@@ -92,7 +92,7 @@ class ArrayListTest {
 
         list.clear();
 
-        assertEquals(0, list.size());
+        assertTrue(list.isEmpty());
     }
 
     /**
