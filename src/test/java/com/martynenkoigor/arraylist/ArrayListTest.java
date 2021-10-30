@@ -72,4 +72,61 @@ class ArrayListTest {
         assertEquals(thirdElement, list.get(1));
         assertEquals(2, list.size());
     }
+
+    /**
+     * Check that ArrayList.clear() removes all the elements from this list.
+     */
+    @Test
+    void assertThatAllElementsAreBeingRemoved() {
+        List<Integer> list = new ArrayList<>();
+
+        final int firstElement = 1;
+        final int secondElement = 2;
+        final int thirdElement = 3;
+
+        list.add(firstElement);
+        list.add(secondElement);
+        list.add(thirdElement);
+
+        assertEquals(3, list.size());
+
+        list.clear();
+
+        assertEquals(0, list.size());
+    }
+
+    /**
+     * Check that ArrayList.isEmpty() returns true if this list contains no elements.
+     */
+    @Test
+    void assertThatListIsEmpty() {
+        List<Integer> list = new ArrayList<>();
+
+        final int element = 1;
+
+        list.add(element);
+
+        assertTrue(!list.isEmpty());
+
+        list.clear();
+
+        assertTrue(list.isEmpty());
+    }
+
+    /**
+     * Check that ArrayList.get(index) returns the element at the specified position in this list.
+     */
+    @Test
+    void assertThatValidElementIsBeingReturned() {
+        List<Integer> list = new ArrayList<>();
+
+        final int firstElement = 1;
+        final int secondElement = 2;
+
+        list.add(firstElement);
+        list.add(secondElement);
+
+        assertEquals(firstElement, list.get(0));
+        assertEquals(secondElement, list.get(1));
+    }
 }
