@@ -11,15 +11,31 @@ public class MyArrayList<E> extends AbstractList<E>
         implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 {
 
+    private static final int DEFAULT_CAPACITY = 10;
+
+    Object[] elementData;
+
+    private int size;
+
+    /**
+     * Constructs an empty list with the specified initial capacity.
+     *
+     * @param initialCapacity – the initial capacity of the list
+     * @throws IllegalArgumentException – if the specified initial capacity is negative
+     */
     public MyArrayList(int initialCapacity) {
-        throw new NotImplementedException();
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Initial capacity can not be negative");
+        }
+
+        this.elementData = new Object[initialCapacity];
     }
 
     /**
      * Constructs an empty list with an initial capacity of ten.
      */
     public MyArrayList() {
-        throw new NotImplementedException();
+        this.elementData = new Object[DEFAULT_CAPACITY];
     }
 
     /**
@@ -31,7 +47,8 @@ public class MyArrayList<E> extends AbstractList<E>
      * @throws NullPointerException if the specified collection is null
      */
     public MyArrayList(Collection<? extends E> c) {
-        throw new NotImplementedException();
+        elementData = c.toArray();
+        size = elementData.length;
     }
 
     /**
@@ -133,7 +150,7 @@ public class MyArrayList<E> extends AbstractList<E>
      *         proper sequence
      */
     public Object[] toArray() {
-        throw new NotImplementedException();
+        return Arrays.copyOf(elementData, size);
     }
 
     /**
