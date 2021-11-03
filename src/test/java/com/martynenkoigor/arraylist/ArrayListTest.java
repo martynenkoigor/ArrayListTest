@@ -90,11 +90,33 @@ class ArrayListTest {
     }
 
     @Test
-    void indexOf() {
+    void testGet(){
+        assertEquals(1, list.get(0));
     }
 
     @Test
-    void lastIndexOf() {
+    void getShouldThrowException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(100));
+    }
+
+    @Test
+    void testIndexOf() {
+        assertEquals(0, list.indexOf(1));
+    }
+
+    @Test
+    void indexOfNoSuchElement() {
+        assertEquals(-1, list.indexOf(70));
+    }
+
+    @Test
+    void testLastIndexOf() {
+        assertEquals(4, list.lastIndexOf(5));
+    }
+
+    @Test
+    void lastIndexOfNoSuchElement() {
+        assertEquals(-1, list.indexOf(70));
     }
 
     @Test
@@ -231,14 +253,6 @@ class ArrayListTest {
 
     @Test
     void testContains() {
-    }
-
-    @Test
-    void testIndexOf() {
-    }
-
-    @Test
-    void testLastIndexOf() {
     }
 
     @Test
