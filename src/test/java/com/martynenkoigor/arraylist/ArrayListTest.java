@@ -1,132 +1,333 @@
 package com.martynenkoigor.arraylist;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class ArrayListTest {
 
-    /**
-     * Check that ArrayList.add(element) appends the specified element to the end of this list.
-     */
-    @Test
-    void assertThatElementIsBeingAppendedToTheEnd() {
-        List<Integer> list = new ArrayList<>();
+    private ArrayList<Integer> list;
 
-        list.add(0);
-        final int elementAtTheEnd = 32;
-        list.add(elementAtTheEnd);
+    @BeforeEach
+    public void setup() {
+        list = new ArrayList<>();
 
-        final int lastElementIndex = list.size() - 1;
-        assertEquals(elementAtTheEnd, list.get(lastElementIndex));
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
     }
 
-    /**
-     * Check that ArrayList.set(index, element) replaces the element at the specified position in this list with the
-     * specified element.
-     */
     @Test
-    void assertThatOldElementIsBeingReplacedByNewElement() {
-        List<Integer> list = new ArrayList<>();
+    void testAdd() {
+        list.add(70);
 
-        final int elementIndex = 0;
+        assertEquals(70,list.get(list.size()-1));
+    }
 
-        final int oldElement = 10;
-        list.add(oldElement);
+    @Test
+    void testAddMoreThanInitialCapacity() {
+        list.add(8);
+        list.add(9);
+        list.add(10);
+        list.add(11);
 
-        assertEquals(oldElement, list.get(elementIndex));
+        assertEquals(11, list.size());
+    }
 
-        final int newElement = 11;
-        list.set(elementIndex, newElement);
+    @Test
+    void testAddByIndex() {
+        list.add(4, 70);
 
-        assertEquals(newElement, list.get(elementIndex));
+        assertEquals(70, list.get(4));
+    }
+
+    @Test
+    void testSet() {
+        list.set(4, 70);
+
+        assertEquals(70, list.get(4));
+    }
+
+    @Test
+    void setShouldThrowException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> list.set(10, 70));
+    }
+
+    @Test
+    void testRemoveObject() {
+        String expected = "[1, 2, 3, 4, 5]";
+
+        list.remove((Integer) 6);
+        list.remove((Integer) 7);
+        assertEquals(expected, Arrays.toString(list.toArray()));
+    }
+
+    @Test
+    void testRemoveByIndex() {
+        String expected = "[1, 2, 3, 4, 5, 6]";
+
+        list.remove( 6);
+        assertEquals(expected, Arrays.toString(list.toArray()));
+    }
+
+    @Test
+    void removeShouldReturnObject() {
+        assertEquals(6, list.remove(5));
+    }
+
+    @Test
+    void removeShouldThrowException(){
+     assertThrows(IndexOutOfBoundsException.class, () -> list.remove(100));
+    }
+
+    @Test
+    void indexOf() {
+    }
+
+    @Test
+    void lastIndexOf() {
+    }
+
+    @Test
+    void clear() {
+    }
+
+    @Test
+    void addAll() {
+    }
+
+    @Test
+    void iterator() {
+    }
+
+    @Test
+    void listIterator() {
+    }
+
+    @Test
+    void testListIterator() {
+    }
+
+    @Test
+    void subList() {
+    }
+
+    @Test
+    void testEquals() {
+    }
+
+    @Test
+    void testHashCode() {
+    }
+
+    @Test
+    void removeRange() {
+    }
+
+    @Test
+    void isEmpty() {
+    }
+
+    @Test
+    void contains() {
+    }
+
+    @Test
+    void toArray() {
+    }
+
+    @Test
+    void testToArray() {
+    }
+
+    @Test
+    void testAdd1() {
+    }
+
+    @Test
+    void containsAll() {
+    }
+
+    @Test
+    void testAddAll() {
+    }
+
+    @Test
+    void removeAll() {
+    }
+
+    @Test
+    void retainAll() {
+    }
+
+    @Test
+    void testClear() {
+    }
+
+    @Test
+    void testToString() {
+    }
+
+    @Test
+    void removeIf() {
+    }
+
+    @Test
+    void spliterator() {
+    }
+
+    @Test
+    void stream() {
+    }
+
+    @Test
+    void parallelStream() {
+    }
+
+    @Test
+    void forEach() {
+    }
+
+    @Test
+    void testSpliterator() {
+    }
+
+    @Test
+    void replaceAll() {
+    }
+
+    @Test
+    void sort() {
+    }
+
+    @Test
+    void testSpliterator1() {
+    }
+
+    @Test
+    void trimToSize() {
+    }
+
+    @Test
+    void ensureCapacity() {
+    }
+
+    @Test
+    void size() {
+    }
+
+    @Test
+    void testIsEmpty() {
+    }
+
+    @Test
+    void testContains() {
+    }
+
+    @Test
+    void testIndexOf() {
+    }
+
+    @Test
+    void testLastIndexOf() {
+    }
+
+    @Test
+    void testClone() {
+    }
+
+    @Test
+    void testToArray1() {
+    }
+
+    @Test
+    void testToArray2() {
+    }
+
+    @Test
+    void get() {
     }
 
 
-    /**
-     * Check that ArrayList.remove(index) removes the element at the specified position in this list.
-     */
+
     @Test
-    void assertThatElementIsBeingRemovedAtSpecifiedPosition() {
-        List<Integer> list = new ArrayList<>();
-
-        final int firstElement = 1;
-        final int secondElement = 2;
-        final int thirdElement = 3;
-
-        list.add(firstElement);
-        list.add(secondElement);
-        list.add(thirdElement);
-
-        assertEquals(firstElement, list.get(0));
-        assertEquals(secondElement, list.get(1));
-        assertEquals(thirdElement, list.get(2));
-        assertEquals(3, list.size());
-
-        list.remove(1);
-
-        assertEquals(firstElement, list.get(0));
-        assertEquals(thirdElement, list.get(1));
-        assertEquals(2, list.size());
+    void testAdd2() {
     }
 
-    /**
-     * Check that ArrayList.clear() removes all the elements from this list.
-     */
     @Test
-    void assertThatAllElementsAreBeingRemoved() {
-        List<Integer> list = new ArrayList<>();
-
-        final int firstElement = 1;
-        final int secondElement = 2;
-        final int thirdElement = 3;
-
-        list.add(firstElement);
-        list.add(secondElement);
-        list.add(thirdElement);
-
-        assertEquals(3, list.size());
-
-        list.clear();
-
-        assertTrue(list.isEmpty());
+    void testAdd3() {
     }
 
-    /**
-     * Check that ArrayList.isEmpty() returns true if this list contains no elements.
-     */
     @Test
-    void assertThatListIsEmpty() {
-        List<Integer> list = new ArrayList<>();
-
-        final int element = 1;
-
-        list.add(element);
-
-        assertTrue(!list.isEmpty());
-
-        list.clear();
-
-        assertTrue(list.isEmpty());
+    void testRemove1() {
     }
 
-    /**
-     * Check that ArrayList.get(index) returns the element at the specified position in this list.
-     */
     @Test
-    void assertThatValidElementIsBeingReturned() {
-        List<Integer> list = new ArrayList<>();
+    void testRemove2() {
+    }
 
-        final int firstElement = 1;
-        final int secondElement = 2;
+    @Test
+    void testClear1() {
+    }
 
-        list.add(firstElement);
-        list.add(secondElement);
+    @Test
+    void testAddAll1() {
+    }
 
-        assertEquals(firstElement, list.get(0));
-        assertEquals(secondElement, list.get(1));
+    @Test
+    void testAddAll2() {
+    }
+
+    @Test
+    void testRemoveAll() {
+    }
+
+    @Test
+    void testRetainAll() {
+    }
+
+    @Test
+    void testListIterator1() {
+    }
+
+    @Test
+    void testListIterator2() {
+    }
+
+    @Test
+    void testIterator() {
+    }
+
+    @Test
+    void testSubList() {
+    }
+
+    @Test
+    void testForEach() {
+    }
+
+    @Test
+    void testSpliterator2() {
+    }
+
+    @Test
+    void testRemoveIf() {
+    }
+
+    @Test
+    void testReplaceAll() {
+    }
+
+    @Test
+    void testSort() {
     }
 }
