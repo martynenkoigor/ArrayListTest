@@ -68,6 +68,7 @@ class ArrayListTest {
 
         list.remove((Integer) 6);
         list.remove((Integer) 7);
+
         assertEquals(expected, Arrays.toString(list.toArray()));
     }
 
@@ -76,6 +77,7 @@ class ArrayListTest {
         String expected = "[1, 2, 3, 4, 5, 6]";
 
         list.remove( 6);
+
         assertEquals(expected, Arrays.toString(list.toArray()));
     }
 
@@ -121,10 +123,58 @@ class ArrayListTest {
 
     @Test
     void clear() {
+        list.clear();
+
+        assertEquals(0, list.size());
     }
 
     @Test
-    void addAll() {
+    void testAddAll() {
+        String expected = "[1, 2, 3, 4, 5, 6, 7, 70, 70, 70, 70]";
+
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(70);
+        arrayList.add(70);
+        arrayList.add(70);
+        arrayList.add(70);
+
+        list.addAll(arrayList);
+
+        assertEquals(expected, Arrays.toString(list.toArray()));
+    }
+
+    @Test
+    void testAddAllByIndex() {
+        String expected = "[1, 2, 3, 70, 70, 70, 70, 4, 5, 6, 7]";
+
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(70);
+        arrayList.add(70);
+        arrayList.add(70);
+        arrayList.add(70);
+
+        list.addAll(3, arrayList);
+
+        assertEquals(expected, Arrays.toString(list.toArray()));
+    }
+
+    @Test
+    void testContains() {
+        assertTrue(list.contains(5));
+    }
+
+    @Test
+    void testIsEmpty() {
+        list = new ArrayList();
+
+        assertTrue(list.isEmpty());
+    }
+
+    @Test
+    void testToArray() {
+        String expected = "[1, 2, 3, 4, 5, 6, 7]";
+
+        assertEquals(expected, Arrays.toString(list.toArray()));
     }
 
     @Test
@@ -135,213 +185,4 @@ class ArrayListTest {
     void listIterator() {
     }
 
-    @Test
-    void testListIterator() {
-    }
-
-    @Test
-    void subList() {
-    }
-
-    @Test
-    void testEquals() {
-    }
-
-    @Test
-    void testHashCode() {
-    }
-
-    @Test
-    void removeRange() {
-    }
-
-    @Test
-    void isEmpty() {
-    }
-
-    @Test
-    void contains() {
-    }
-
-    @Test
-    void toArray() {
-    }
-
-    @Test
-    void testToArray() {
-    }
-
-    @Test
-    void testAdd1() {
-    }
-
-    @Test
-    void containsAll() {
-    }
-
-    @Test
-    void testAddAll() {
-    }
-
-    @Test
-    void removeAll() {
-    }
-
-    @Test
-    void retainAll() {
-    }
-
-    @Test
-    void testClear() {
-    }
-
-    @Test
-    void testToString() {
-    }
-
-    @Test
-    void removeIf() {
-    }
-
-    @Test
-    void spliterator() {
-    }
-
-    @Test
-    void stream() {
-    }
-
-    @Test
-    void parallelStream() {
-    }
-
-    @Test
-    void forEach() {
-    }
-
-    @Test
-    void testSpliterator() {
-    }
-
-    @Test
-    void replaceAll() {
-    }
-
-    @Test
-    void sort() {
-    }
-
-    @Test
-    void testSpliterator1() {
-    }
-
-    @Test
-    void trimToSize() {
-    }
-
-    @Test
-    void ensureCapacity() {
-    }
-
-    @Test
-    void size() {
-    }
-
-    @Test
-    void testIsEmpty() {
-    }
-
-    @Test
-    void testContains() {
-    }
-
-    @Test
-    void testClone() {
-    }
-
-    @Test
-    void testToArray1() {
-    }
-
-    @Test
-    void testToArray2() {
-    }
-
-    @Test
-    void get() {
-    }
-
-
-
-    @Test
-    void testAdd2() {
-    }
-
-    @Test
-    void testAdd3() {
-    }
-
-    @Test
-    void testRemove1() {
-    }
-
-    @Test
-    void testRemove2() {
-    }
-
-    @Test
-    void testClear1() {
-    }
-
-    @Test
-    void testAddAll1() {
-    }
-
-    @Test
-    void testAddAll2() {
-    }
-
-    @Test
-    void testRemoveAll() {
-    }
-
-    @Test
-    void testRetainAll() {
-    }
-
-    @Test
-    void testListIterator1() {
-    }
-
-    @Test
-    void testListIterator2() {
-    }
-
-    @Test
-    void testIterator() {
-    }
-
-    @Test
-    void testSubList() {
-    }
-
-    @Test
-    void testForEach() {
-    }
-
-    @Test
-    void testSpliterator2() {
-    }
-
-    @Test
-    void testRemoveIf() {
-    }
-
-    @Test
-    void testReplaceAll() {
-    }
-
-    @Test
-    void testSort() {
-    }
 }
