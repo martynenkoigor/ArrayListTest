@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -178,11 +180,27 @@ class ArrayListTest {
     }
 
     @Test
-    void iterator() {
+    void testIterator() {
+        Iterator iterator = list.iterator();
+        String actual = "";
+        String expected = "1, 2, 3, 4, 5, 6, 7, ";
+
+        while (iterator.hasNext()){
+            actual += iterator.next() + ", ";
+        }
+        assertEquals(expected, actual);
     }
 
     @Test
-    void listIterator() {
+    void testListIterator() {
+        ListIterator listIterator = list.listIterator(4);
+        String expected = "5, 6, 7, ";
+        String actual = "";
+
+        while(listIterator.hasNext())
+            actual+= listIterator.next() + ", ";
+
+        assertEquals(expected, actual);
     }
 
 }
