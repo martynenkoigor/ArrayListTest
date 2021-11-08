@@ -17,15 +17,7 @@ class ArrayListTest {
 
     @BeforeEach
     public void setup() {
-        list = new ArrayList<>();
-
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.add(6);
-        list.add(7);
+        list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
     }
 
     @Test
@@ -66,21 +58,21 @@ class ArrayListTest {
 
     @Test
     void testRemoveObject() {
-        String expected = "[1, 2, 3, 4, 5]";
+        Integer[] expected = {1, 2, 3, 4, 5};
 
         list.remove((Integer) 6);
         list.remove((Integer) 7);
 
-        assertEquals(expected, Arrays.toString(list.toArray()));
+        assertArrayEquals(expected, list.toArray());
     }
 
     @Test
     void testRemoveByIndex() {
-        String expected = "[1, 2, 3, 4, 5, 6]";
+        Integer[] expected = {1, 2, 3, 4, 5, 6};
 
         list.remove( 6);
 
-        assertEquals(expected, Arrays.toString(list.toArray()));
+        assertArrayEquals(expected, list.toArray());
     }
 
     @Test
@@ -132,32 +124,24 @@ class ArrayListTest {
 
     @Test
     void testAddAll() {
-        String expected = "[1, 2, 3, 4, 5, 6, 7, 70, 70, 70, 70]";
+        Integer[] expected = {1, 2, 3, 4, 5, 6, 7, 70, 70, 70, 70};
 
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(70);
-        arrayList.add(70);
-        arrayList.add(70);
-        arrayList.add(70);
+        ArrayList<Integer> arrayList = new ArrayList(Arrays.asList(70, 70, 70, 70));
 
         list.addAll(arrayList);
 
-        assertEquals(expected, Arrays.toString(list.toArray()));
+        assertArrayEquals(expected, list.toArray());
     }
 
     @Test
     void testAddAllByIndex() {
-        String expected = "[1, 2, 3, 70, 70, 70, 70, 4, 5, 6, 7]";
+        Integer[] expected = {1, 2, 3, 70, 70, 70, 70, 4, 5, 6, 7};
 
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(70);
-        arrayList.add(70);
-        arrayList.add(70);
-        arrayList.add(70);
+        ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(70, 70, 70, 70));
 
         list.addAll(3, arrayList);
 
-        assertEquals(expected, Arrays.toString(list.toArray()));
+        assertArrayEquals(expected, list.toArray());
     }
 
     @Test
@@ -166,17 +150,22 @@ class ArrayListTest {
     }
 
     @Test
-    void testIsEmpty() {
+    void testIsEmptyReturnsTrue() {
         list = new ArrayList();
 
         assertTrue(list.isEmpty());
     }
 
     @Test
-    void testToArray() {
-        String expected = "[1, 2, 3, 4, 5, 6, 7]";
+    void testIsEmptyReturnsFalse() {
+        assertFalse(list.isEmpty());
+    }
 
-        assertEquals(expected, Arrays.toString(list.toArray()));
+    @Test
+    void testToArray() {
+        Integer[] expected = {1, 2, 3, 4, 5, 6, 7};
+
+        assertArrayEquals(expected, list.toArray());
     }
 
     @Test
