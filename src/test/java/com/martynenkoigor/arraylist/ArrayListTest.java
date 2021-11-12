@@ -20,9 +20,16 @@ class ArrayListTest {
         list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
     }
 
+    /**
+     * Appends the specified element to the end of this list.
+     * Params:
+     * e – element to be appended to this list
+     * Returns:
+     * true (as specified by Collection.add)
+     */
     @Test
     void testAdd() {
-        list.add(70);
+        assertTrue(list.add(70));
 
         assertEquals(70,list.get(list.size()-1));
     }
@@ -37,18 +44,46 @@ class ArrayListTest {
         assertEquals(11, list.size());
     }
 
+    /**
+     * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+     * Params:
+     * index – index at which the specified element is to be inserted
+     * element – element to be inserted
+     * Throws:
+     * IndexOutOfBoundsException –
+     */
     @Test
     void testAddByIndex() {
+        assertEquals(7, list.size());
+
         list.add(4, 70);
 
+        assertEquals(8, list.size());
         assertEquals(70, list.get(4));
     }
 
     @Test
-    void testSet() {
-        list.set(4, 70);
+    void addByIndexShouldThrowException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(100, 70));
+    }
 
-        assertEquals(70, list.get(4));
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     * Params:
+     * index – index of the element to replace
+     * element – element to be stored at the specified position
+     * Returns:
+     * the element previously at the specified position
+     * Throws:
+     * IndexOutOfBoundsException –
+     */
+    @Test
+    void testSet() {
+        assertEquals(7, list.size());
+        assertEquals(1, list.set(0, 70));
+
+        assertEquals(7, list.size());
+        assertEquals(70, list.get(0));
     }
 
     @Test
@@ -56,35 +91,42 @@ class ArrayListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.set(10, 70));
     }
 
-    @Test
-    void testRemoveObject() {
-        Integer[] expected = {1, 2, 3, 4, 5};
-
-        list.remove((Integer) 6);
-        list.remove((Integer) 7);
-
-        assertArrayEquals(expected, list.toArray());
-    }
-
+    /**
+     * Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).
+     * Params:
+     * index – the index of the element to be removed
+     * Returns:
+     * the element that was removed from the list
+     * Throws:
+     * IndexOutOfBoundsException –
+     */
     @Test
     void testRemoveByIndex() {
         Integer[] expected = {1, 2, 3, 4, 5, 6};
 
-        list.remove( 6);
+        assertEquals(7, list.size());
+
+        assertEquals(7, list.remove( 6));
+
+        assertEquals(6, list.size());
 
         assertArrayEquals(expected, list.toArray());
     }
 
     @Test
-    void removeShouldReturnObject() {
-        assertEquals(6, list.remove(5));
-    }
-
-    @Test
     void removeShouldThrowException(){
-     assertThrows(IndexOutOfBoundsException.class, () -> list.remove(100));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(100));
     }
 
+    /**
+     * Returns the element at the specified position in this list.
+     * Params:
+     * index – index of the element to return
+     * Returns:
+     * the element at the specified position in this list
+     * Throws:
+     * IndexOutOfBoundsException –
+     */
     @Test
     void testGet(){
         assertEquals(1, list.get(0));
@@ -93,6 +135,16 @@ class ArrayListTest {
     @Test
     void getShouldThrowException() {
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(100));
+    }
+
+    /*@Test
+    void testRemoveObject() {
+        Integer[] expected = {1, 2, 3, 4, 5};
+
+        list.remove((Integer) 6);
+        list.remove((Integer) 7);
+
+        assertArrayEquals(expected, list.toArray());
     }
 
     @Test
@@ -191,5 +243,5 @@ class ArrayListTest {
 
         assertEquals(expected, actual);
     }
-
+*/
 }
